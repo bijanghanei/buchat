@@ -1,92 +1,123 @@
-AI-Powered Telegram Chatbot
-This project implements an AI-powered Telegram chatbot using Ollama for local language model inference, LangChain for conversational capabilities, and Docker for deployment. The bot responds to user messages with context-aware responses powered by a local LLM (e.g., LLaMA 3).
-Features
+AI-Powered Telegram Chatbot 🤖
 
-Responds to text messages and the /start command.
-Uses LangChain's ConversationChain with memory to maintain conversation context.
-Runs a local Ollama instance for LLM inference.
-Deployed using Docker and Docker Compose for easy setup.
 
-Prerequisites
+A Telegram chatbot powered by Ollama for local LLM inference, LangChain for conversational AI, and Docker for easy deployment. Engage in context-aware conversations with a local language model like LLaMA 3.
 
-Docker and Docker Compose installed.
-A Telegram Bot Token (obtained from BotFather).
+🚀 Features
 
-Project Structure
+📩 Responds to text messages and /start command
+🧠 Maintains conversation context with LangChain's ConversationChain
+🖥️ Runs a local Ollama instance for LLM inference
+🐳 Deployed via Docker and Docker Compose
+🔒 Securely handles Telegram API tokens via environment variables
 
-telegram_bot.py: Main bot script handling Telegram interactions and LangChain integration.
-Dockerfile: Defines the Docker image for the bot.
-requirements.txt: Lists Python dependencies.
-docker-compose.yml: Orchestrates the bot and Ollama services.
 
-Setup Instructions
+📋 Prerequisites
 
-Clone the Repository (or create the files manually):
-git clone <repository-url>
-cd <repository-directory>
+Docker and Docker Compose
+A Telegram Bot Token from BotFather
+
+
+📂 Project Structure
+
+
+
+File
+Description
+
+
+
+telegram_bot.py
+Main bot script with Telegram and LangChain integration
+
+
+Dockerfile
+Docker image configuration for the bot
+
+
+requirements.txt
+Python dependencies
+
+
+docker-compose.yml
+Orchestrates bot and Ollama services
+
+
+.gitignore
+Ignores sensitive and temporary files
+
+
+.env
+Stores environment variables (not tracked)
+
+
+
+🛠️ Setup Instructions
+
+Clone the Repository:
+git clone [<repository-url>](https://github.com/bijanghanei/uchat-.git)
+cd uchat-
 
 
 Get a Telegram Bot Token:
 
 Open Telegram, search for @BotFather, and send /start.
-Send /newbot, follow the prompts to create a bot, and copy the provided token.
+Use /newbot to create a bot and copy the token.
 
 
 Set Up Environment:
 
-Create a .env file in the project root:TELEGRAM_TOKEN=your_bot_token_here
+Create a .env file in the project root:
+TELEGRAM_BOT_TOKEN: your_bot_token_here
 
 
-Replace your_bot_token_here with the token from BotFather.
 
 
 Pull an Ollama Model:
 
-Start the services to initialize the Ollama container:docker-compose up -d
+Start the services:
+docker-compose up -d
 
 
-Pull a model (e.g., llama3):docker exec -it <ollama_container_name> ollama pull llama3
-
-
-Find the <ollama_container_name> with docker ps (e.g., <project_name>_ollama_1).
-
-
-Run the Bot:
-
-Build and start the services:docker-compose up --build
-
-
-The bot will connect to Telegram, and the Ollama service will run the LLM.
-
-
-Interact with the Bot:
-
-Open Telegram, search for your bot by its name, and send /start or any text message.
-The bot will respond using the Ollama LLM via LangChain.
+Pull the llama3 model (or another model):
+```bash
+curl -X POST http://localhost:11434/pull \
+  -H "Content-Type: application/json" \
+  -d '{"name": "llama3"}'
+```
 
 
 
-Configuration
+Chat with the Bot:
 
-Ollama Model: The bot uses llama3 by default (set in telegram_bot.py). Change to another model (e.g., mistral) by updating the model parameter in telegram_bot.py and ensuring the model is pulled in Ollama.
+Open Telegram, find your bot, and send /start or any message.
+Enjoy AI-powered responses! 🎉
+
+
+
+
+⚙️ Configuration
+
+Ollama Model: Defaults to llama3 in telegram_bot.py. Change to another model (e.g., mistral) by updating:
+llm = Ollama(model="mistral", base_url="http://ollama:11434")
+
+Ensure the model is pulled in Ollama.
+
 Environment Variables:
-TELEGRAM_TOKEN: Required for Telegram API access.
+
+TELEGRAM_TOKEN: Required for Telegram API.
 
 
-Docker Network: The bot and Ollama services communicate over a chatbot-network Docker network. Ollama is accessible at http://ollama:11434 within the network.
+Docker Network: Bot and Ollama communicate via chatbot-network at http://ollama:11434.
 
-Troubleshooting
 
-Bot Not Responding: Check Docker logs with docker-compose logs bot.
-Ollama Issues: Verify the Ollama service is running and the model is pulled (docker exec -it <ollama_container_name> ollama list).
-Token Errors: Ensure the TELEGRAM_TOKEN is correct in the .env file.
-Dependency Issues: Confirm requirements.txt dependencies are compatible. Update versions if needed.
 
-Extending the Bot
+🔧 Extending the Bot
 
-Add new commands by extending the CommandHandler in telegram_bot.py.
-Customize the LangChain conversation chain (e.g., add custom prompts or tools) in telegram_bot.py.
-Modify the Docker setup in docker-compose.yml for additional services or configurations.
+Add Commands: Extend CommandHandler in telegram_bot.py.
+Customize AI: Modify LangChain's ConversationChain for custom prompts or tools.
+Scale Deployment: Adjust docker-compose.yml for additional services.
 
-License
+
+📜 License
 This project is licensed under the MIT License.
