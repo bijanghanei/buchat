@@ -42,8 +42,8 @@ You'll need the following before getting started:
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/bijanghanei/uchat-.git
-cd uchat-
+git clone https://github.com/bijanghanei/buchat.git
+cd buchat
 ```
 
 ### 2. Create a Telegram Bot
