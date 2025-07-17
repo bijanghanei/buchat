@@ -55,8 +55,10 @@ Stores environment variables (not tracked)
 🛠️ Setup Instructions
 
 Clone the Repository:
-git clone [<repository-url>](https://github.com/bijanghanei/uchat-.git)
-cd uchat-
+```bash
+git https://github.com/bijanghanei/uchat.git
+cd uchat
+```
 
 
 Get a Telegram Bot Token:
@@ -75,8 +77,7 @@ TELEGRAM_BOT_TOKEN: your_bot_token_here
 
 Pull an Ollama Model:
 
-Start the services:
-docker-compose up -d
+Start the services to initialize the Ollama container:docker-compose up -d
 
 
 Pull the llama3 model (or another model):
