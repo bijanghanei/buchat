@@ -56,8 +56,8 @@ Stores environment variables (not tracked)
 
 Clone the Repository:
 ```bash
-git https://github.com/bijanghanei/uchat.git
-cd uchat
+git https://github.com/bijanghanei/uchat-.git
+cd uchat-
 ```
 
 
